@@ -1,12 +1,14 @@
 package com.example.couponcore.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 @Entity
 @Table(name = "coupon_issue")
 public class CouponIssue extends AuditingFields {
