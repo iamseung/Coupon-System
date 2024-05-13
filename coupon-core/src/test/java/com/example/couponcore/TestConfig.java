@@ -8,6 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @ActiveProfiles("test")
 @TestPropertySource(properties = "spring.config.name=application-core")
-@SpringBootTest
+@SpringBootTest(classes = CouponCoreConfiguration.class)
 public class TestConfig {
 }
