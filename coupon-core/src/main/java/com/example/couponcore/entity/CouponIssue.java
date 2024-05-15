@@ -1,16 +1,20 @@
 package com.example.couponcore.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "coupon_issue")
+@Table(name = "coupon_issues")
 public class CouponIssue extends AuditingFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
