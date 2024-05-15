@@ -18,7 +18,7 @@ import static com.example.couponcore.exception.ErrorCode.INVALID_COUPON_ISSUE_QU
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name = "coupon")
+@Table(name = "coupons")
 public class Coupon extends  AuditingFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
