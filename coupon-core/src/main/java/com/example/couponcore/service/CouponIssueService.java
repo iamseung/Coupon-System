@@ -45,6 +45,7 @@ public class CouponIssueService {
         return couponIssueJpaRepository.save(issue);
     }
 
+    @Transactional(readOnly = true)
     public void checkAlreadyIssuance(long couponId, long userId) {
         CouponIssue issue = couponIssueRepository.findFirstCouponIssue(couponId, userId);
 
