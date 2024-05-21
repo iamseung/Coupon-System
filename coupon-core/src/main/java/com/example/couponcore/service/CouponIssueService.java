@@ -23,7 +23,7 @@ public class CouponIssueService {
     private final CouponIssueJpaRepository couponIssueJpaRepository;
 
     public void issue(long couponId, long userId) {
-        Coupon coupon = findCoupon(couponId);
+        Coupon coupon = findCouponWithLock(couponId);
         coupon.issue();
         saveCouponIssue(couponId, userId);
     }
@@ -32,6 +32,12 @@ public class CouponIssueService {
     public Coupon findCoupon(long couponId) {
         return couponJpaRepository.findById(couponId).orElseThrow(() -> {
            throw new CouponIssueException(ErrorCode.COUPON_NOT_EXIST, "쿠폰 정책이 존재하지 않습니다. %s".formatted(couponId));
+        });
+    }
+
+    public Coupon findCouponWithLock(long couponId) {
+        return couponJpaRepository.findCouponWithLock(couponId).orElseThrow(() -> {
+            throw new CouponIssueException(ErrorCode.COUPON_NOT_EXIST, "쿠폰 정책이 존재하지 않습니다. %s".formatted(couponId));
         });
     }
 
