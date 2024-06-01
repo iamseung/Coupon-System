@@ -11,6 +11,7 @@ import static com.example.couponcore.util.CouponRedisUtils.getIssueRequestKey;
 public class CouponIssueRedisService {
     private final RedisRepository redisRepository;
 
+    // 발급 수량 검증
     public boolean availableTotalIssueQuantity(Integer totalQuantity, long couponId) {
         // 무제한 발급
         if(totalQuantity == null)
@@ -18,9 +19,9 @@ public class CouponIssueRedisService {
 
         String key = getIssueRequestKey(couponId);
         return totalQuantity > redisRepository.sCard(key);
-
     }
 
+    // 중복 발급 검증
     public boolean availableUserIssueQuantity(long couponId, long userId) {
         String key = getIssueRequestKey(couponId);
         return !redisRepository.sIsMember(key, String.valueOf(userId));

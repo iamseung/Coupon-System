@@ -27,4 +27,8 @@ public class RedisRepository {
         return redisTemplate.opsForSet().isMember(key, value);
     }
 
+    // 리스트 생성
+    public Long rPush(String key, String value) {
+        return redisTemplate.opsForList().rightPush(key, value);
+    }
 }
