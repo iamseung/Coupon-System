@@ -181,7 +181,9 @@ class AsyncCouponIssueServiceV1Test extends TestConfig {
                 .dateIssueStart(LocalDateTime.now().minusDays(1))
                 .dateIssueEnd(LocalDateTime.now().plusDays(2))
                 .build();
+
         couponJpaRepository.save(coupon);
+
         CouponIssueRequest request = new CouponIssueRequest(coupon.getId(), userId);
         // when
         sut.issue(coupon.getId(), userId);
