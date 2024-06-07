@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class CouponCacheService {
     private final CouponIssueService couponIssueService;
 
-    // 캐싱
+    // 캐싱, 30분
     @Cacheable(cacheNames = "coupon")
     public CouponRedisEntity getCouponCache(long couponId) {
         Coupon coupon = couponIssueService.findCoupon(couponId);
