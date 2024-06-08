@@ -27,4 +27,11 @@ public class CouponIssueController {
         couponIssueRequestService.asyncIssueRequestV1(body);
         return new CouponIssueResponseDto(true, null);
     }
+
+    @PostMapping("/v2/issue-async")
+    public CouponIssueResponseDto asyncIssueV2(@RequestBody CouponIssueRequestDto body) {
+        // 성공한다면 true 를 반환
+        couponIssueRequestService.asyncIssueRequestV2(body);
+        return new CouponIssueResponseDto(true, null);
+    }
 }

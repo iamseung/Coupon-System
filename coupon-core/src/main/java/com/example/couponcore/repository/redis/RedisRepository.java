@@ -53,7 +53,7 @@ public class RedisRepository {
         try {
             String code = redisTemplate.execute(
                     issueScript,
-                    List.of(issueRequestKey, issueRequestKey),
+                    List.of(issueRequestKey, issueRequestQueueKey),
                     String.valueOf(userId),
                     String.valueOf(totalIssueQuantity),
                     objectMapper.writeValueAsString(couponIssueRequest)
