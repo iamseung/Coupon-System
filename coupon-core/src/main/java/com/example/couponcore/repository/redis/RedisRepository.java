@@ -46,6 +46,20 @@ public class RedisRepository {
         return redisTemplate.opsForList().rightPush(key, value);
     }
 
+    // 리스트 사이즈 조회
+    public Long lSize(String key) {
+        return redisTemplate.opsForList().size(key);
+    }
+
+    public String lPop(String key) {
+        return redisTemplate.opsForList().leftPop(key);
+    }
+
+    // 리스트 인덱스로 단일 조회
+    public String lIndex(String key, long index) {
+        return redisTemplate.opsForList().index(key, index);
+    }
+
     public void issueRequest(long couponId, long userId, int totalIssueQuantity) {
         String issueRequestKey = getIssueRequestKey(couponId);
         CouponIssueRequest couponIssueRequest = new CouponIssueRequest(couponId, userId);
