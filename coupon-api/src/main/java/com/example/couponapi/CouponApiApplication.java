@@ -13,5 +13,4 @@ public class CouponApiApplication {
         System.setProperty("spring.config.name", "application-core,application-api");
         SpringApplication.run(CouponApiApplication.class, args);
     }
-
 }
