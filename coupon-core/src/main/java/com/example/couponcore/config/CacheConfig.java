@@ -16,7 +16,7 @@ import java.time.Duration;
 
 @RequiredArgsConstructor
 @Configuration
-public class CacheConfiguration {
+public class CacheConfig {
 
     private final RedisConnectionFactory redisConnectionFactory;
 
