@@ -19,13 +19,13 @@ public class AsyncCouponIssueServiceV2 {
     private final CouponCacheService couponCacheService;
 
     public void issue(long couponId, long userId) {
-        CouponRedisEntity coupon = couponCacheService.getCouponCache(couponId);
+        CouponRedisEntity coupon = couponCacheService.getCouponLocalCache(couponId);
         coupon.checkIssuableCoupon();
         issueRequest(couponId, userId, coupon.totalQuantity());
     }
 
     /*
-    1.쿠폰 발급 수량 제어, totalQuantity > redisRepository.sCard(key);
+    1. 쿠폰 발급 수량 제어, totalQuantity > redisRepository.sCard(key);
     2. 중복 발급 요청 제어, !redisRepository.sIsMember(key, String.valueOf(userId);
     3. 쿠폰 발급 요청 저장, redisRepository.sAdd
     4. 쿠폰 발급 큐 적재, redisRepository.rPush

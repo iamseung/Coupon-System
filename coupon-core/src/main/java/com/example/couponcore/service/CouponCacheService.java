@@ -19,9 +19,11 @@ public class CouponCacheService {
         return new CouponRedisEntity(coupon);
     }
 
+    // LocalCacheConfig Bean
+    // 자동으로 데이터가 있으면 반환, 없으면 getCouponCache Redis 데이터 조회
     @Cacheable(cacheNames = "coupon", cacheManager = "localCacheManager")
     public CouponRedisEntity getCouponLocalCache(long couponId) {
-        return getCouponCache(couponId);
+        return proxy().getCouponCache(couponId);
     }
 
     private CouponCacheService proxy() {
