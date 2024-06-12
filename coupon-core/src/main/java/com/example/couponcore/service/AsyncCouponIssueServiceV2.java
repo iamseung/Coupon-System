@@ -21,6 +21,7 @@ public class AsyncCouponIssueServiceV2 {
     public void issue(long couponId, long userId) {
         CouponRedisEntity coupon = couponCacheService.getCouponLocalCache(couponId);
         coupon.checkIssuableCoupon();
+        // 위에서 쿠폰 수량에 대한 검증을 선행으로 작업하기에 Redis 로 가는 부하를 줄일 수 있다.
         issueRequest(couponId, userId, coupon.totalQuantity());
     }
 

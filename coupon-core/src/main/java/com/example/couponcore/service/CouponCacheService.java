@@ -4,6 +4,7 @@ import com.example.couponcore.entity.Coupon;
 import com.example.couponcore.repository.redis.dto.CouponRedisEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.aop.framework.AopContext;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,19 @@ public class CouponCacheService {
         return proxy().getCouponCache(couponId);
     }
 
+    // 캐시 업데이트
+    @CachePut(cacheNames = "coupon")
+    public CouponRedisEntity putCouponCache(long couponId) {
+        return getCouponCache(couponId);
+    }
+
+    // 캐시 업데이트
+    @CachePut(cacheNames = "coupon")
+    public CouponRedisEntity putCouponLocalCache(long couponId) {
+        return getCouponLocalCache(couponId);
+    }
+
+    // AopContext.currentProxy()를 사용해서 현재 실행 중인 메서드를 호출한 프록시 객체를 가져오게 설정
     private CouponCacheService proxy() {
         return ((CouponCacheService) AopContext.currentProxy());
     }
