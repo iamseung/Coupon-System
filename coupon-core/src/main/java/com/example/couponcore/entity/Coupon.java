@@ -52,6 +52,11 @@ public class Coupon extends  AuditingFields {
         return dateIssueStart.isBefore(now) && dateIssueEnd.isAfter(now);
     }
 
+    public boolean isIssueComplete() {
+        LocalDateTime now = LocalDateTime.now();
+        return dateIssueEnd.isBefore(now) || !availableIssueQuantity();
+    }
+
     // 쿠폰 발급
     public void issue() {
         if (!availableIssueQuantity()) {
