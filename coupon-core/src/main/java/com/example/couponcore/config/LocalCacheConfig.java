@@ -10,6 +10,7 @@ import java.time.Duration;
 @Configuration
 public class LocalCacheConfig {
 
+    // 10분 제한, 최대 사이즈 1000 제한
     @Bean
     public CacheManager localCacheManager() {
         CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();

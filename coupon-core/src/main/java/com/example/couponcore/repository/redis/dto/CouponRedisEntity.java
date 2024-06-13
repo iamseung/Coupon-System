@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
 
@@ -40,11 +41,15 @@ public record CouponRedisEntity(
         );
     }
 
+    // 쿠폰 발급 기한에 대한 검증, 현재 시간 기준
     private boolean availableIssueDate() {
         LocalDateTime now = LocalDateTime.now();
         return dateIssueStart.isBefore(now) && dateIssueEnd.isAfter(now);
     }
 
+    // 쿠폰 발급 검증
+    // 1. 수량
+    // 2. 기한
     public void checkIssuableCoupon() {
         if (!availableIssueQuantity) {
             throw new CouponIssueException(INVALID_COUPON_ISSUE_QUANTITY, "모든 발급 수량이 소진되었습니다. couponId : %s".formatted(id));
